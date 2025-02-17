@@ -60,6 +60,8 @@ class CategoryResource(OscarCatalogueResource):
     id: Optional[int]
     code: str
     name: Optional[str]
+    name_en: Optional[str]
+    name_ar: Optional[str]
     slug: Optional[str]
     description: Optional[str]
     meta_title: Optional[str]
@@ -103,9 +105,13 @@ class ProductResource(OscarCatalogueResource):
     code: Optional[str]
     upc: Optional[str]
     structure: str = StringField(choices=ProductModel.STRUCTURE_CHOICES)
-    title: str
+    title = StringField()
+    title_en = StringField()   # if you want them explicitly separate
+    title_ar = StringField()
     slug: Optional[str]
     description: Optional[str] = ""
+    description_en: Optional[str] = ""
+    description_ar: Optional[str] = ""
     meta_title: Optional[str]
     meta_description: Optional[str]
     images: List[ProductImageResource] = odin.Options(empty=True)

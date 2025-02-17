@@ -32,4 +32,4 @@ class StockRecordResource(OscarPartnerResource):
 
     # It's optional because we allow easy price setting on the product resource by setting the partner model
     # on the product resource, which in turn is used to create a stockrecord with other price related fields.
-    partner: Optional[PartnerResource]
+    # partner: Optional[PartnerResource]

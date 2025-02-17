@@ -27,15 +27,15 @@ class StockRecordModelToResource(OscarBaseMapping):
     from_obj = StockRecord
     to_obj = StockRecordResource
 
-    @odin.map_field
-    def partner(self, partner):
-        return PartnerModelToResource.apply(partner)
+    # @odin.map_field
+    # def partner(self, partner):
+    #     return PartnerModelToResource.apply(partner)
 
 
 class StockRecordToModel(ModelMapping):
     from_obj = StockRecordResource
     to_obj = StockRecord
 
-    @odin.map_field
-    def partner(self, partner):
-        return PartnerToModel.apply(partner)
+    # @odin.map_field
+    # def partner(self, partner):
+    #     return PartnerToModel.apply(partner)
