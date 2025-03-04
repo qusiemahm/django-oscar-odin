@@ -6,8 +6,6 @@ class VendorResource(Resource):
     user_id = fields.IntegerField()
     registration_date = fields.DateTimeField()
     registration_status = fields.StringField()
-    rating = fields.FloatField()
-    total_ratings = fields.IntegerField()
     company_name = fields.StringField(null=True)
     brand_name = fields.StringField(null=True)
     brand_name_en = fields.StringField(null=True)
@@ -28,8 +26,6 @@ class VendorResource(Resource):
             user_id=instance.user_id,
             registration_date=instance.registration_date,
             registration_status=instance.registration_status,
-            rating=instance.rating,
-            total_ratings=instance.total_ratings,
             company_name=(
                 legal_info.company_name if legal_info and legal_info.company_name else "Unknown"
             ),
