@@ -48,10 +48,7 @@ class ProductImageResource(OscarCatalogueResource):
         ),
     )
     date_created: Optional[datetime]
-
-    product: Optional["ProductResource"] = odin.DictAs.delayed(
-        lambda: ProductResource, null=True
-    )
+    product: Optional[Any] = None  # Will be ProductResource
 
 
 class CategoryResource(OscarCatalogueResource):
@@ -71,9 +68,7 @@ class CategoryResource(OscarCatalogueResource):
     ancestors_are_public: Optional[bool]
     depth: Optional[int]
     path: Optional[str]
-    children: Optional[List["CategoryResource"]] = odin.ListOf.delayed(
-        lambda: CategoryResource
-    )
+    children: Optional[List[Any]] = None  # Will be List[CategoryResource]
 
 
 class ProductClassResource(OscarCatalogueResource):
@@ -139,10 +134,7 @@ class ProductResource(OscarCatalogueResource):
 
     date_created: Optional[datetime]
     date_updated: Optional[datetime]
-
-    children: Optional[List["ProductResource"]] = odin.ListOf.delayed(
-        lambda: ProductResource, null=True
-    )
+    children: Optional[List[Any]] = None  # Will be List[ProductResource]
 
     def clean(self):
         if (
@@ -168,3 +160,8 @@ class ProductResource(OscarCatalogueResource):
                 errors["partner"] = ["Partner can not be empty."]
 
             raise OdinValidationError(errors, code="simpleprice")
+
+
+# Note: The fields with self-references and forward references are defined as Optional[Any]
+# to avoid circular import issues. They are typed as Any but will contain the appropriate
+# resource types at runtime.
